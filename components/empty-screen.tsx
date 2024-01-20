@@ -43,7 +43,7 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
           Your agile Coding Assistant! Specializing in code optimization,
           refactoring, and testing, Veerbal ensures your web applications are
           scalable, maintainable, and of top quality. Embrace best practices,
-          TDD, and efficient project management with Veerbal's expertise in
+          TDD, and efficient project management with Veerbal&apos;s expertise in
           Agile methodologies, Git, and CI/CD pipelines. Start coding smarter
           today!
         </p>
