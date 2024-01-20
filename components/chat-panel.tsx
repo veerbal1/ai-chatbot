@@ -11,6 +11,15 @@ import { Switch } from './ui/switch'
 import { Label } from './ui/label'
 import { TConversationType, TModels } from '@/lib/types'
 import { conversationMode, modelMode } from '@/lib/config'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from './ui/select'
 
 export interface ChatPanelProps
   extends Pick<
@@ -52,14 +61,11 @@ export function ChatPanel({
 }: ChatPanelProps) {
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
 
-  const handleConversationType = (technicalConversation: boolean) => {
-    let mode = technicalConversation
-      ? conversationMode[1].id
-      : conversationMode[0].id
+  const handleConversationType = (technicalConversation: TConversationType) => {
     setModelState(ps => {
       return {
         ...ps,
-        conversationMode: mode
+        conversationMode: technicalConversation
       }
     })
   }
@@ -139,7 +145,20 @@ export function ChatPanel({
               <Label htmlFor="conversation-mode" className="cursor-pointer">
                 Conversation {'->'}
               </Label>
-              <Switch
+              <Select onValueChange={handleConversationType} value={modelState.conversationMode}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Context" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {/* <SelectItem value="apple">Apple</SelectItem> */}
+                    {conversationMode.map(mode => (
+                      <SelectItem value={mode.id}>{mode.label}</SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              {/* <Switch
                 id="conversation-mode"
                 checked={modelState.conversationMode === 'technical'}
                 onCheckedChange={handleConversationType}
@@ -150,7 +169,7 @@ export function ChatPanel({
                     mode => mode.id === modelState.conversationMode
                   )?.label
                 }
-              </Label>
+              </Label> */}
             </div>
             <div className="flex items-center space-x-2 border p-2 rounded-md">
               <Label htmlFor="model-advance" className="cursor-pointer">
