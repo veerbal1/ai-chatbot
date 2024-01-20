@@ -35,6 +35,7 @@ export function PromptForm({
 
   return (
     <form
+      className="flex-1 w-full"
       onSubmit={async e => {
         e.preventDefault()
         if (!input?.trim()) {
