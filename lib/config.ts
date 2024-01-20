@@ -1,4 +1,9 @@
-import { TConversationContext, TConversationType, TModelMode, TModels } from "./types"
+import {
+  TConversationContext,
+  TConversationType,
+  TModelMode,
+  TModels
+} from './types'
 
 export const modelMode: TModelMode[] = [
   {
@@ -13,15 +18,22 @@ export const modelMode: TModelMode[] = [
   }
 ]
 
+// TODO:// Pass context inside this array of object instead of using util function in libs/utils.ts
 export const conversationMode: TConversationContext[] = [
   {
     id: 'normal',
-    label: 'Normal',
-    content: ''
+    label: 'Normal'
   },
   {
     id: 'technical',
-    label: 'Technical',
-    content: ''
+    label: 'Technical'
+  },
+  {
+    id: 'motivational',
+    label: 'Motivational'
+  },
+  {
+    id: 'fitness',
+    label: 'Fitness'
   }
 ]

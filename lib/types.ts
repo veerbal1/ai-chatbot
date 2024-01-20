@@ -24,7 +24,11 @@ type CapitalizeString<S extends string> =
 
 export type TModels = 'gpt-4-1106-preview' | 'gpt-3.5-turbo'
 
-export type TConversationType = 'technical' | 'normal'
+export type TConversationType =
+  | 'technical'
+  | 'normal'
+  | 'motivational'
+  | 'fitness'
 
 export type TModelMode = {
   id: TModels
@@ -35,5 +39,5 @@ export type TModelMode = {
 export type TConversationContext = {
   id: TConversationType
   label: CapitalizeString<TConversationType>
-  content: string
+  content?: string
 }
