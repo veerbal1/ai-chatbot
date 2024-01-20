@@ -59,6 +59,16 @@ export interface ChatPanelProps
   > {
   id?: string
   title?: string
+  modelState: {
+    conversationMode: 'normal' | 'technical'
+    modelMode: TModels
+  }
+  setModelState: React.Dispatch<
+    React.SetStateAction<{
+      conversationMode: 'normal' | 'technical'
+      modelMode: TModels
+    }>
+  >
 }
 
 export function ChatPanel({
@@ -70,13 +80,11 @@ export function ChatPanel({
   reload,
   input,
   setInput,
-  messages
+  messages,
+  modelState,
+  setModelState
 }: ChatPanelProps) {
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
-  const [modelState, setModelState] = React.useState({
-    conversationMode: conversationMode[1].id,
-    modelMode: modelMode[1].id
-  })
 
   const handleConversationType = (technicalConversation: boolean) => {
     let mode = technicalConversation
@@ -153,7 +161,7 @@ export function ChatPanel({
               await append({
                 id,
                 content: value,
-                role: 'user',
+                role: 'user'
                 // model: modelState.modelMode,
                 // conversationType: ''
               })
@@ -162,7 +170,7 @@ export function ChatPanel({
             setInput={setInput}
             isLoading={isLoading}
           />
-          <div className="hidden gap-2 flex-row pb-2 sm:flex-col">
+          <div className="flex gap-2 flex-row pb-2 sm:flex-col">
             <div className="flex items-center space-x-2 border p-2 rounded-md">
               <Label htmlFor="conversation-mode" className="cursor-pointer">
                 Conversation {'->'}

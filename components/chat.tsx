@@ -2,7 +2,7 @@
 
 import { useChat, type Message } from 'ai/react'
 
-import { cn } from '@/lib/utils'
+import { cn, modelContext } from '@/lib/utils'
 import { ChatList } from '@/components/chat-list'
 import { ChatPanel } from '@/components/chat-panel'
 import { EmptyScreen } from '@/components/empty-screen'
@@ -23,6 +23,43 @@ import { toast } from 'react-hot-toast'
 import { usePathname, useRouter } from 'next/navigation'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
+
+type TModels = 'gpt-4-1106-preview' | 'gpt-3.5-turbo'
+
+const modelMode: {
+  id: TModels
+  label: 'Normal' | 'Advance'
+  model: TModels
+}[] = [
+  {
+    id: 'gpt-3.5-turbo',
+    label: 'Normal',
+    model: 'gpt-3.5-turbo'
+  },
+  {
+    id: 'gpt-4-1106-preview',
+    label: 'Advance',
+    model: 'gpt-4-1106-preview'
+  }
+]
+
+const conversationMode: {
+  id: 'normal' | 'technical'
+  label: 'Normal' | 'Technical'
+  content: string
+}[] = [
+  {
+    id: 'normal',
+    label: 'Normal',
+    content: ''
+  },
+  {
+    id: 'technical',
+    label: 'Technical',
+    content: ''
+  }
+]
+
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[]
   id?: string
@@ -31,6 +68,10 @@ export interface ChatProps extends React.ComponentProps<'div'> {
 export function Chat({ id, initialMessages, className }: ChatProps) {
   const router = useRouter()
   const path = usePathname()
+  const [modelState, setModelState] = useState({
+    conversationMode: conversationMode[1].id,
+    modelMode: modelMode[1].id
+  })
   const [previewToken, setPreviewToken] = useLocalStorage<string | null>(
     'ai-token',
     null
@@ -43,7 +84,9 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
       id,
       body: {
         id,
-        previewToken
+        previewToken,
+        model: modelState.modelMode,
+        modelContext: modelContext(modelState.conversationMode)
       },
       onResponse(response) {
         if (response.status === 401) {
@@ -77,6 +120,8 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         messages={messages}
         input={input}
         setInput={setInput}
+        setModelState={setModelState}
+        modelState={modelState}
       />
 
       <Dialog open={previewTokenDialog} onOpenChange={setPreviewTokenDialog}>
