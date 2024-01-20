@@ -14,7 +14,6 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   const json = await req.json()
   const { messages, previewToken, modelContext, model } = json
-  console.log('SOmething', modelContext, model)
   const userId = (await auth())?.user.id
 
   if (!userId) {
@@ -32,7 +31,7 @@ export async function POST(req: Request) {
       content: modelContext,
       role: 'system'
     },
-    ...messages
+    ...[...messages.slice(-10)]
   ]
 
   const res = await openai.chat.completions.create({
