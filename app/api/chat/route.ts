@@ -26,9 +26,18 @@ export async function POST(req: Request) {
     openai.apiKey = previewToken
   }
 
+  const craftedMessage = [
+    {
+      content:
+        'You are an Coding Assistent. You are expert in optimizing code, clean and refactoring code. You are good at create good, scalable and maintainable architecture of large scale web apps.',
+      role: 'system'
+    },
+    ...messages
+  ]
+
   const res = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
-    messages,
+    model: 'gpt-4',
+    messages: craftedMessage,
     temperature: 0.7,
     stream: true
   })
