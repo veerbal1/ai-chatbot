@@ -127,7 +127,7 @@ export function ChatPanel({
             )
           )}
         </div>
-        <div className="px-4 py-2 border-t shadow-lg bg-background sm:rounded-t-xl sm:border md:py-4 flex flex-col justify-center gap-3 items-center sm:flex-row">
+        <div className="px-4 py-2 border-t shadow-lg bg-background sm:rounded-t-xl sm:border md:py-4 flex flex-col justify-center gap-3 items-center">
           <PromptForm
             onSubmit={async value => {
               await append({
@@ -140,10 +140,10 @@ export function ChatPanel({
             setInput={setInput}
             isLoading={isLoading}
           />
-          <div className="flex gap-2 flex-row pb-2 sm:flex-col">
-            <div className="flex items-center space-x-2 border p-2 rounded-md">
+          <div className="flex gap-2 flex-col sm:flex-row sm:justify-between pb-2 w-full">
+            <div className="flex items-center space-x-2 border p-2 rounded-md justify-between">
               <Label htmlFor="conversation-mode" className="cursor-pointer">
-                Conversation {'->'}
+                Conversation
               </Label>
               <Select
                 onValueChange={handleConversationType}
@@ -154,7 +154,6 @@ export function ChatPanel({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    {/* <SelectItem value="apple">Apple</SelectItem> */}
                     {conversationMode.map(mode => (
                       <SelectItem key={mode.id} value={mode.id}>
                         {mode.label}
@@ -163,34 +162,24 @@ export function ChatPanel({
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              {/* <Switch
-                id="conversation-mode"
-                checked={modelState.conversationMode === 'technical'}
-                onCheckedChange={handleConversationType}
-              />
-              <Label htmlFor="conversation-mode" className="cursor-pointer">
-                {
-                  conversationMode.find(
-                    mode => mode.id === modelState.conversationMode
-                  )?.label
-                }
-              </Label> */}
             </div>
-            <div className="flex items-center space-x-2 border p-2 rounded-md">
+            <div className="flex items-center space-x-2 border p-2 rounded-md justify-between">
               <Label htmlFor="model-advance" className="cursor-pointer">
-                AI Model {'->'}
+                AI Model
               </Label>
-              <Switch
-                id="model-advance"
-                checked={modelState.modelMode === 'gpt-4-1106-preview'}
-                onCheckedChange={handleModelType}
-              />
-              <Label htmlFor="model-advance" className="cursor-pointer">
-                {
-                  modelMode.find(mode => mode.id === modelState.modelMode)
-                    ?.label
-                }
-              </Label>
+              <div className='flex items-center space-x-2'>
+                <Switch
+                  id="model-advance"
+                  checked={modelState.modelMode === 'gpt-4-1106-preview'}
+                  onCheckedChange={handleModelType}
+                />
+                <Label htmlFor="model-advance" className="cursor-pointer min-w-16 text-right">
+                  {
+                    modelMode.find(mode => mode.id === modelState.modelMode)
+                      ?.label
+                  }
+                </Label>
+              </div>
             </div>
           </div>
         </div>
