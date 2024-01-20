@@ -21,44 +21,9 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { toast } from 'react-hot-toast'
 import { usePathname, useRouter } from 'next/navigation'
+import { conversationMode, modelMode } from '@/lib/config'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
-
-type TModels = 'gpt-4-1106-preview' | 'gpt-3.5-turbo'
-
-const modelMode: {
-  id: TModels
-  label: 'Normal' | 'Advance'
-  model: TModels
-}[] = [
-  {
-    id: 'gpt-3.5-turbo',
-    label: 'Normal',
-    model: 'gpt-3.5-turbo'
-  },
-  {
-    id: 'gpt-4-1106-preview',
-    label: 'Advance',
-    model: 'gpt-4-1106-preview'
-  }
-]
-
-const conversationMode: {
-  id: 'normal' | 'technical'
-  label: 'Normal' | 'Technical'
-  content: string
-}[] = [
-  {
-    id: 'normal',
-    label: 'Normal',
-    content: ''
-  },
-  {
-    id: 'technical',
-    label: 'Technical',
-    content: ''
-  }
-]
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[]

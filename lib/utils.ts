@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx'
 import { customAlphabet } from 'nanoid'
 import { twMerge } from 'tailwind-merge'
+import { TConversationType } from './types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -42,7 +43,7 @@ export function formatDate(input: string | number | Date): string {
   })
 }
 
-export function modelContext(type: 'normal' | 'technical'): string {
+export function modelContext(type: TConversationType): string {
   switch (type) {
     case 'normal':
       return 'You are a helpful assistant'

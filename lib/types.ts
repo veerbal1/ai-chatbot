@@ -16,3 +16,24 @@ export type ServerActionResult<Result> = Promise<
       error: string
     }
 >
+
+type CapitalizeString<S extends string> =
+  S extends `${infer FirstLetter}${infer Rest}`
+    ? `${Uppercase<FirstLetter>}${Rest}`
+    : S
+
+export type TModels = 'gpt-4-1106-preview' | 'gpt-3.5-turbo'
+
+export type TConversationType = 'technical' | 'normal'
+
+export type TModelMode = {
+  id: TModels
+  label: 'Normal' | 'Advance'
+  model: TModels
+}
+
+export type TConversationContext = {
+  id: TConversationType
+  label: CapitalizeString<TConversationType>
+  content: string
+}

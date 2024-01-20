@@ -9,42 +9,8 @@ import { IconRefresh, IconShare, IconStop } from '@/components/ui/icons'
 import { ChatShareDialog } from '@/components/chat-share-dialog'
 import { Switch } from './ui/switch'
 import { Label } from './ui/label'
-
-type TModels = 'gpt-4-1106-preview' | 'gpt-3.5-turbo'
-
-const modelMode: {
-  id: TModels
-  label: 'Normal' | 'Advance'
-  model: TModels
-}[] = [
-  {
-    id: 'gpt-3.5-turbo',
-    label: 'Normal',
-    model: 'gpt-3.5-turbo'
-  },
-  {
-    id: 'gpt-4-1106-preview',
-    label: 'Advance',
-    model: 'gpt-4-1106-preview'
-  }
-]
-
-const conversationMode: {
-  id: 'normal' | 'technical'
-  label: 'Normal' | 'Technical'
-  content: string
-}[] = [
-  {
-    id: 'normal',
-    label: 'Normal',
-    content: ''
-  },
-  {
-    id: 'technical',
-    label: 'Technical',
-    content: ''
-  }
-]
+import { TConversationType, TModels } from '@/lib/types'
+import { conversationMode, modelMode } from '@/lib/config'
 
 export interface ChatPanelProps
   extends Pick<
@@ -60,12 +26,12 @@ export interface ChatPanelProps
   id?: string
   title?: string
   modelState: {
-    conversationMode: 'normal' | 'technical'
+    conversationMode: TConversationType
     modelMode: TModels
   }
   setModelState: React.Dispatch<
     React.SetStateAction<{
-      conversationMode: 'normal' | 'technical'
+      conversationMode: TConversationType
       modelMode: TModels
     }>
   >
@@ -162,8 +128,6 @@ export function ChatPanel({
                 id,
                 content: value,
                 role: 'user'
-                // model: modelState.modelMode,
-                // conversationType: ''
               })
             }}
             input={input}
