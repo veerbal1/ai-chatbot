@@ -145,7 +145,10 @@ export function ChatPanel({
               <Label htmlFor="conversation-mode" className="cursor-pointer">
                 Conversation {'->'}
               </Label>
-              <Select onValueChange={handleConversationType} value={modelState.conversationMode}>
+              <Select
+                onValueChange={handleConversationType}
+                value={modelState.conversationMode}
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Context" />
                 </SelectTrigger>
@@ -153,7 +156,9 @@ export function ChatPanel({
                   <SelectGroup>
                     {/* <SelectItem value="apple">Apple</SelectItem> */}
                     {conversationMode.map(mode => (
-                      <SelectItem value={mode.id}>{mode.label}</SelectItem>
+                      <SelectItem key={mode.id} value={mode.id}>
+                        {mode.label}
+                      </SelectItem>
                     ))}
                   </SelectGroup>
                 </SelectContent>
