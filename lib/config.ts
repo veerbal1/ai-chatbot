@@ -23,14 +23,10 @@ export const conversationMode: TConversationContext[] = [
     id: 'technical',
     label: 'Technical'
   },
-  {
-    id: 'motivational',
-    label: 'Motivational'
-  },
-  {
-    id: 'fitness',
-    label: 'Fitness'
-  },
+  // {
+  //   id: 'fitness',
+  //   label: 'Fitness'
+  // },
   {
     id: 'grammerly',
     label: 'Grammerly'
