@@ -39,7 +39,7 @@ export async function POST(req: Request) {
   const res = await openai.chat.completions.create({
     model: model,
     messages: craftedMessage,
-    temperature: 0.7,
+    temperature: 1,
     stream: true
   })
 
