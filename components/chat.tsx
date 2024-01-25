@@ -35,7 +35,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   const path = usePathname()
   const [modelState, setModelState] = useState({
     conversationMode: conversationMode[1].id,
-    modelMode: modelMode[1].id
+    modelMode: modelMode[0].id
   })
   const [previewToken, setPreviewToken] = useLocalStorage<string | null>(
     'ai-token',
