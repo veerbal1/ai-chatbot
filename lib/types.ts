@@ -29,6 +29,7 @@ export type TConversationType =
   | 'normal'
   | 'motivational'
   | 'fitness'
+  | 'grammerly'
 
 export type TModelMode = {
   id: TModels

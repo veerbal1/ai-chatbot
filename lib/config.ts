@@ -1,9 +1,4 @@
-import {
-  TConversationContext,
-  TConversationType,
-  TModelMode,
-  TModels
-} from './types'
+import { TConversationContext, TModelMode } from './types'
 
 export const modelMode: TModelMode[] = [
   {
@@ -35,5 +30,9 @@ export const conversationMode: TConversationContext[] = [
   {
     id: 'fitness',
     label: 'Fitness'
+  },
+  {
+    id: 'grammerly',
+    label: 'Grammerly'
   }
 ]
