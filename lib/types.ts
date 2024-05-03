@@ -22,7 +22,7 @@ type CapitalizeString<S extends string> =
     ? `${Uppercase<FirstLetter>}${Rest}`
     : S
 
-export type TModels = 'gpt-4-1106-preview' | 'gpt-3.5-turbo'
+export type TModels = 'gpt-4-turbo' | 'gpt-3.5-turbo'
 
 export type TConversationType =
   | 'technical'

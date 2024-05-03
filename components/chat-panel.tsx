@@ -170,7 +170,7 @@ export function ChatPanel({
               <div className='flex items-center space-x-2'>
                 <Switch
                   id="model-advance"
-                  checked={modelState.modelMode === 'gpt-4-1106-preview'}
+                  checked={modelState.modelMode === 'gpt-4-turbo'}
                   onCheckedChange={handleModelType}
                 />
                 <Label htmlFor="model-advance" className="cursor-pointer min-w-16 text-right">
