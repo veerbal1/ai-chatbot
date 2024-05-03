@@ -7,9 +7,9 @@ export const modelMode: TModelMode[] = [
     model: 'gpt-3.5-turbo'
   },
   {
-    id: 'gpt-4-1106-preview',
+    id: 'gpt-4-turbo',
     label: 'Advance',
-    model: 'gpt-4-1106-preview'
+    model: 'gpt-4-turbo'
   }
 ]
 
